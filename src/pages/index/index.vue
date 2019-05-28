@@ -1,35 +1,26 @@
 <template>
-  <div @click="clickHandle">
-    <image class="image" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
-  
-
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
-
-    <div class="all">
-        <div class="left">
-        </div>
-        <div class="right">
-        </div>
-    </div>
-  </div>
+  <view @tap="clickHandle">
+    <image class="image"
+           mode="widthFix"
+           :src="imgUrl"
+           alt="Latest Crypto Fear & Greed Index" ></image>
+    <view>
+      <text>{{historyData}}</text>
+    </view>
+  </view>
 </template>
 
 <script>
-import card from '@/components/card'
 
 export default {
   data () {
     return {
-      motto: 'Hello miniprograme',
-      userInfo: {
-        nickName: 'mpvue',
-        avatarUrl: 'http://mpvue.com/assets/logo.png'
-      }
+      historyData:'',
+      imgUrl: 'https://alternative.me/crypto/fear-and-greed-index.png',
     }
   },
 
   components: {
-    card
   },
 
   methods: {
@@ -43,68 +34,25 @@ export default {
     },
     clickHandle (ev) {
       console.log('clickHandle:', ev)
-      // throw {message: 'custom test'}
     }
   },
 
-  created () {
-    // let app = getApp()
+  onLoad() {
+    this.$http('https://api.alternative.me/fng/?limit=10','GET').then((res)=>{
+      this.historyData=JSON.stringify(res.data);
+      console.log(this)
+    })
   }
 }
 </script>
 
 <style scoped>
 .image{
-  
+    width: 100%;
 }
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-.all{
-  width:7.5rem;
-  height:1rem;
-  background-color:blue;
-}
-.all:after{
-  display:block;
-  content:'';
-  clear:both;
-}
-.left{
-  float:left;
-  width:3rem;
-  height:1rem;
-  background-color:red;
-}
-
-.right{
-  float:left;
-  width:4.5rem;
-  height:1rem;
-  background-color:green;
 }
 </style>

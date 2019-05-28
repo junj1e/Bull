@@ -13,6 +13,7 @@
 	"projectname": "bull",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.0.4",
 	"condition": {
 		"search": {
 			"current": -1,
