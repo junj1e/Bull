@@ -1,12 +1,15 @@
 <template>
   <view>
+    <view class='cavans-view'>
+    <canvas canvas-id='canvas1' class='cavans'></canvas>
+    </view>
     <text>{{text}}</text>
     <rich-text :nodes="richText"></rich-text>
-
   </view>
 </template>
 
 <script>
+  import wxCharts from '../../lib/wxcharts'
   export default {
     name: "info",
     components: {},
@@ -74,7 +77,15 @@
       };
     },
     computed: {},
-    create() {
+    onLoad(){
+      new wxCharts({
+     canvasId: 'canvas1',
+     type: 'pie',
+     series: [{ name: '一班', data: 50 }, { name: '二班', data: 30 }, { name: '三班', data: 20 }, { name: '四班', data: 18 }, { name: '五班', data: 8 }],
+     width: 640,
+     height: 400,
+     dataLabel: true,
+   });
     },
     methods: {
     }
@@ -84,5 +95,13 @@
 </script>
 
 <style  scoped>
+.cavans-view{
+  text-align:center;
+}
+.cavans{
 
+  width: 100%;
+  height: 400px;
+
+}
 </style>
