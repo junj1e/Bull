@@ -16,6 +16,16 @@
         <div class="weui-cell__ft">{{timeText}}</div>
       </div>
     </div>
+    <div class="weui-cells__title">Yesterday:</div>
+    <div class="weui-cells weui-cells_after-title">
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </div>
+        <div class="weui-cell__bd">{{yesterdayStatus}}</div>
+        <div class="weui-cell__ft">{{yesterdayNum}}</div>
+      </div>
+    </div>
   </view>
 </template>
 
@@ -26,6 +36,9 @@ export default {
     return {
       historyData:'',
       timeText:'',
+      yesterdayStatus:'',
+      yesterdayNum:'',
+
       timeInterval:null,
       imgUrl: 'https://alternative.me/crypto/fear-and-greed-index.png',
     }
@@ -68,12 +81,15 @@ export default {
       this.$http('https://api.alternative.me/fng/?limit=2','GET').then((res)=>{
         if(res.data[0].time_until_update){
           this.time=res.data[0].time_until_update
-          this.timeInterval = setInterval(()=>{
+          this.timeDown(this.time)
+          this.yesterdayStatus=res.data[1].value_classification
+          this.yesterdayNum=res.data[1].value
+          /*this.timeInterval = setInterval(()=>{
             if(this.time == 0){
               clearInterval(this.timeInterval)
             }
             this.timeDown(this.time--)
-          },1000)
+          },1000)*/
         }
       })
     },
