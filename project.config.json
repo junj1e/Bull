@@ -1,7 +1,8 @@
 {
 	"description": "项目配置文件。",
+  "cloudfunctionRoot":"cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
