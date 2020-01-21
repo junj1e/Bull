@@ -1,17 +1,10 @@
 # bull
 
-> A Mpvue project
+>小程序贪婪恐惧指数
 
 ## Build Setup
 
 ``` bash
-# 初始化项目
-vue init mpvue/mpvue-quickstart myproject
-cd myproject
-
-# 安装依赖
-yarn
-
 # 开发时构建
 npm dev
 
@@ -34,4 +27,3 @@ npm build:my
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
